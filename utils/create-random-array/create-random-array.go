@@ -1,6 +1,7 @@
 package createrandomarray
 
 import (
+	"fmt"
 	"log"
 	"math/rand"
 	"os"
@@ -9,7 +10,11 @@ import (
 )
 
 func CreateRandomNumbers() {
-	f, err := os.Create("./utils/arrays/random-array.txt")
+	fmt.Printf("Creating file...\n")
+	fileName := "random-array.txt"
+	pathName := "./utils/arrays/"
+	f, err := os.Create(pathName + fileName)
+	fmt.Printf("%s created at %s \n", fileName, pathName)
 
 	if err != nil {
 		log.Fatal(err)
@@ -17,13 +22,21 @@ func CreateRandomNumbers() {
 
 	defer f.Close()
 
-	v := 50
-	for i := 0; i < v; i++ {
-		r := rand.Intn(10000)
+	fmt.Printf("start populating file")
+	//set size of array
+	sizeOfArray := 500000
+	for i := 0; i < sizeOfArray; i++ {
+		if i%2 == 0 {
+			fmt.Printf("populating..\n")
+		} else {
+			fmt.Printf("populating...\n")
+		}
 
-		s := strconv.Itoa(r)
+		randomNumber := rand.Intn(600000)
 
-		if i != v-1 {
+		s := strconv.Itoa(randomNumber)
+
+		if i != sizeOfArray-1 {
 			s = s + ","
 		}
 
@@ -33,5 +46,5 @@ func CreateRandomNumbers() {
 			log.Fatal(err2)
 		}
 	}
-
+	fmt.Printf("File poluated with %d \n", sizeOfArray)
 }

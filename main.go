@@ -5,8 +5,8 @@ import (
 
 	"github.com/eiannone/keyboard"
 
-	cr "github.com/julianopedraca/golang-with-test/utils/create-random-array"
-	cs "github.com/julianopedraca/golang-with-test/utils/create-sorted-array"
+	createRandomArrayFile "github.com/julianopedraca/golang-with-test/utils/create-random-array"
+	createSortedArrayFile "github.com/julianopedraca/golang-with-test/utils/create-sorted-array"
 )
 
 func main() {
@@ -18,12 +18,10 @@ func main() {
 	}()
 
 	methods := []string{
+		"Create Random Array and Sorted",
 		"Insertion Sort",
 		"Merge Sort",
 	}
-
-	cr.CreateRandomNumbers()
-	cs.CreateSortedArray()
 
 	index := 0
 	exit := 0
@@ -48,6 +46,7 @@ func main() {
 
 		switch key {
 		case keyboard.KeyEsc:
+			index = -1
 			exit = 1
 		case keyboard.KeyArrowDown:
 			index += 1
@@ -60,9 +59,13 @@ func main() {
 				index = len(methods) - 1
 			}
 		case keyboard.KeyEnter:
-			fmt.Printf("%d \n", index)
+			exit = 1
 		}
-
 	}
 
+	switch index {
+	case 0:
+		createRandomArrayFile.CreateRandomNumbers()
+		createSortedArrayFile.CreateSortedArray()
+	}
 }
