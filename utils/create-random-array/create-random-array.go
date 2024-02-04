@@ -22,9 +22,14 @@ func CreateRandomNumbers() {
 
 	defer f.Close()
 
-	fmt.Printf("start populating file")
+	fmt.Printf("start populating file \n")
 	//set size of array
-	sizeOfArray := 500000
+	var sizeOfArray int
+	var randInt int
+	fmt.Printf("Write the size of the array: \n")
+	fmt.Scan(&sizeOfArray)
+	fmt.Printf("Write the larger number of the array: \n")
+	fmt.Scan(&randInt)
 	for i := 0; i < sizeOfArray; i++ {
 		if i%2 == 0 {
 			fmt.Printf("populating..\n")
@@ -32,7 +37,7 @@ func CreateRandomNumbers() {
 			fmt.Printf("populating...\n")
 		}
 
-		randomNumber := rand.Intn(600000)
+		randomNumber := rand.Intn(randInt)
 
 		s := strconv.Itoa(randomNumber)
 
